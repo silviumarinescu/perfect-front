@@ -1,11 +1,9 @@
 {
   "name": "perfect-front",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "build":"gulp build"
+    "build": "gulp build"
   },
   "devDependencies": {
     "handlebars": "^4.7.7",
@@ -17,7 +15,5 @@
     "gulp-image": "^6.2.1",
     "browser-sync": "^2.26.14"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC"
 }
