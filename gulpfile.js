@@ -1,18 +1,15 @@
 const gulp = require("gulp");
 const handlebars = require("gulp-compile-handlebars");
+const image = require("gulp-image");
 const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 const sass = require("gulp-sass");
-
-const templateData = {
-  firstName: "Kaanon",
-};
 
 const hbs = () =>
   gulp
     .src("src/pages/**/*.hbs")
     .pipe(
-      handlebars(templateData, {
+      handlebars(require("./src/data.json"), {
         ignorePartials: true,
         batch: ["./src/components"],
       })
@@ -33,11 +30,18 @@ const styles = () =>
     .pipe(gulp.dest("dist"))
     .pipe(browserSync.stream());
 
+const images = () =>
+  gulp.src("./src/images/**/*.*").pipe(image()).pipe(gulp.dest("./dist/images"));
+
 gulp.task("default", () => {
   browserSync.init({
     server: "./dist",
   });
+  styles();
+  hbs();
+  images();
   gulp.watch("src/**/*.scss", styles);
-  gulp.watch("src/**/*.hbs", hbs);
+  gulp.watch(["src/**/*.hbs", "src/data.json"], hbs);
+  gulp.watch("src/images/**/*.*", images);
   gulp.watch("dist/*.html").on("change", browserSync.reload);
 });
