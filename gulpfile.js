@@ -31,7 +31,10 @@ const styles = () =>
     .pipe(browserSync.stream());
 
 const images = () =>
-  gulp.src("./src/images/**/*.*").pipe(image()).pipe(gulp.dest("./dist/images"));
+  gulp
+    .src("./src/images/**/*.*")
+    .pipe(image())
+    .pipe(gulp.dest("./dist/images"));
 
 gulp.task("default", () => {
   browserSync.init({
@@ -44,4 +47,11 @@ gulp.task("default", () => {
   gulp.watch(["src/**/*.hbs", "src/data.json"], hbs);
   gulp.watch("src/images/**/*.*", images);
   gulp.watch("dist/*.html").on("change", browserSync.reload);
+});
+
+gulp.task("build", (done) => {
+  styles();
+  hbs();
+  images();
+  done();
 });
