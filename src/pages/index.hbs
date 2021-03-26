@@ -1,10 +1,26 @@
 {{#> layout title="Homepage" css="index.css"}}
-<p>Hello test 12aaaa {{firstName}}</p>
-<p>HELLO! {{firstName}}</p>
-<div>aaaa {{msg}}</div>
-<ul>
-    {{#each people}}
-    <li>{{this.name}}</li>
-    {{/each}}
-</ul>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <div class="bxslider">
+                <div><img src="images/coffee1.jpg"></div>
+                <div><img src="images/coffee2.jpg"></div>
+                <div><img src="images/coffee3.jpg"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = () => {
+        $('.bxslider').bxSlider({
+            auto: true,
+            autoControls: true,
+            stopAutoOnClick: true,
+            pager: true,
+            slideWidth: 600
+
+        });
+    }
+</script>
 {{/layout}}

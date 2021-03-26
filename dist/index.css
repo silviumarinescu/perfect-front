@@ -1,0 +1,13 @@
+header {
+  background: red; }
+
+footer {
+  background: pink;
+  color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+
+body {
+  background-color: black;
+  color: white; }
