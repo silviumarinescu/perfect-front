@@ -10,7 +10,7 @@ const templateData = {
 
 const hbs = () =>
   gulp
-    .src("src/pages/*.hbs")
+    .src("src/pages/**/*.hbs")
     .pipe(
       handlebars(templateData, {
         ignorePartials: true,
@@ -23,16 +23,21 @@ const hbs = () =>
 
 const styles = () =>
   gulp
-    .src("src/styles/*.scss")
+    .src("src/**/*.scss")
     .pipe(sass())
-    .pipe(gulp.dest("dist/styles"))
+    .pipe(
+      rename((path) => {
+        path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
+      })
+    )
+    .pipe(gulp.dest("dist"))
     .pipe(browserSync.stream());
 
 gulp.task("default", () => {
   browserSync.init({
     server: "./dist",
   });
-  gulp.watch("src/styles/*.scss", styles);
+  gulp.watch("src/**/*.scss", styles);
   gulp.watch("src/**/*.hbs", hbs);
   gulp.watch("dist/*.html").on("change", browserSync.reload);
 });
