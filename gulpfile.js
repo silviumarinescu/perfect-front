@@ -4,12 +4,13 @@ const image = require("gulp-image");
 const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 const sass = require("gulp-sass");
+const fs = require("fs");
 
 const hbs = () =>
   gulp
     .src("src/pages/**/*.hbs")
     .pipe(
-      handlebars(require("./src/data.json"), {
+      handlebars(JSON.parse(fs.readFileSync("src/data.json")), {
         ignorePartials: true,
         batch: ["./src/components"],
       })
