@@ -1,0 +1,10 @@
+$primary: rgb(168, 99, 99);
+$secondary: yellow;
+$body-bg: pink;
+$body-color: purple;
+
+@import "../components/header/index";
+@import "../components/footer/index";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+

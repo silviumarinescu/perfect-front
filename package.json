@@ -15,5 +15,8 @@
     "gulp-image": "^6.2.1",
     "browser-sync": "^2.26.14"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta3"
+  }
 }
