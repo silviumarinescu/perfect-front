@@ -1,6 +1,6 @@
 {
   "msg": "test aaa",
-  "people": [{ "name": "gigi" }, { "name": "ionel" }],
+  "people": [{ "name": "gigi" }, { "name": "ionel" },{ "name": "ala" }],
   "carusel": [
     { "image": "images/coffee1.jpg" },
     { "image": "images/coffee2.jpg" },
