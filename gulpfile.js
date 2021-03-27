@@ -31,6 +31,17 @@ const styles = () =>
     .pipe(gulp.dest("dist"))
     .pipe(browserSync.stream());
 
+const scripts = () =>
+  gulp
+    .src("src/**/*.js")
+    .pipe(
+      rename((path) => {
+        path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
+      })
+    )
+    .pipe(gulp.dest("dist"))
+    .pipe(browserSync.stream());
+
 const images = () =>
   gulp
     .src("./src/images/**/*.*")
@@ -42,9 +53,11 @@ gulp.task("default", () => {
     server: "./dist",
   });
   styles();
+  scripts();
   hbs();
   images();
   gulp.watch("src/**/*.scss", styles);
+  gulp.watch("src/**/*.js", scripts);
   gulp.watch(["src/**/*.hbs", "src/data.json"], hbs);
   gulp.watch("src/images/**/*.*", images);
   gulp.watch("dist/*.html").on("change", browserSync.reload);
@@ -52,6 +65,7 @@ gulp.task("default", () => {
 
 gulp.task("build", (done) => {
   styles();
+  scripts();
   hbs();
   images();
   done();

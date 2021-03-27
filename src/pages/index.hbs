@@ -1,26 +1,13 @@
-{{#> layout title="Homepage" css="index.css"}}
+{{#> layout title="Homepage" css="index.css" js="index.js"}}
 <div class="container mt-5">
     <div class="row">
         <div class="col">
             <div class="bxslider">
-                <div><img src="images/coffee1.jpg"></div>
-                <div><img src="images/coffee2.jpg"></div>
-                <div><img src="images/coffee3.jpg"></div>
+                {{#each carusel}}
+                <div><img src="{{this.image}}"></div>
+                {{/each}}
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    window.onload = () => {
-        $('.bxslider').bxSlider({
-            auto: true,
-            autoControls: true,
-            stopAutoOnClick: true,
-            pager: true,
-            slideWidth: 600
-
-        });
-    }
-</script>
 {{/layout}}
