@@ -13,6 +13,11 @@ const hbs = () =>
       handlebars(JSON.parse(fs.readFileSync("src/data.json")), {
         ignorePartials: true,
         batch: ["./src/components"],
+        helpers: {
+          ifEquals: function (arg1, arg2, options) {
+            return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+          },
+        },
       })
     )
     .pipe(rename({ extname: ".html" }))
