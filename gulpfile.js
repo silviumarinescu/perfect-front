@@ -21,7 +21,7 @@ const hbs = () =>
       })
     )
     .pipe(rename({ extname: ".html" }))
-    .pipe(gulp.dest("dist"))
+    .pipe(gulp.dest("www"))
     .pipe(browserSync.stream());
 
 const styles = () =>
@@ -33,7 +33,7 @@ const styles = () =>
         path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
       })
     )
-    .pipe(gulp.dest("dist"))
+    .pipe(gulp.dest("www"))
     .pipe(browserSync.stream());
 
 const scripts = () =>
@@ -44,18 +44,18 @@ const scripts = () =>
         path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
       })
     )
-    .pipe(gulp.dest("dist"))
+    .pipe(gulp.dest("www"))
     .pipe(browserSync.stream());
 
 const images = () =>
   gulp
     .src("./src/images/**/*.*")
     .pipe(image())
-    .pipe(gulp.dest("./dist/images"));
+    .pipe(gulp.dest("./www/images"));
 
 gulp.task("default", () => {
   browserSync.init({
-    server: "./dist",
+    server: "./www",
   });
   styles();
   scripts();
@@ -65,7 +65,7 @@ gulp.task("default", () => {
   gulp.watch("src/**/*.js", scripts);
   gulp.watch(["src/**/*.hbs", "src/data.json"], hbs);
   gulp.watch("src/images/**/*.*", images);
-  gulp.watch("dist/*.html").on("change", browserSync.reload);
+  gulp.watch("www/*.html").on("change", browserSync.reload);
 });
 
 gulp.task("build", (done) => {
