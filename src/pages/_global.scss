@@ -3,8 +3,11 @@ $secondary: yellow;
 $body-bg: pink;
 $body-color: purple;
 
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+body {
+  font-family: "Lato", sans-serif;
+}
+
 @import "../components/header/index";
 @import "../components/footer/index";
 @import "../../node_modules/bootstrap/scss/bootstrap";
-
-
