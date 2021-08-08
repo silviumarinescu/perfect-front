@@ -28,6 +28,7 @@ const styles = () =>
   gulp
     .src("src/**/*.scss")
     .pipe(sass())
+    .on('error', sass.logError)
     .pipe(
       rename((path) => {
         path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
