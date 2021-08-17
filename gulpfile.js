@@ -4,6 +4,9 @@ const image = require("gulp-image");
 const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 const sass = require("gulp-sass");
+const sourcemaps = require('gulp-sourcemaps');
+const plumber = require("gulp-plumber");
+const notify = require("gulp-notify");
 const fs = require("fs");
 
 const hbs = () =>
@@ -27,8 +30,28 @@ const hbs = () =>
 const styles = () =>
   gulp
     .src("src/**/*.scss")
+    .pipe(
+      plumber({
+        errorHandler: function (err) {
+          notify.onError({
+            title: "Error",
+            subtitle: "Failure!",
+            message: "Error: <%= error.message %>",
+            sound: "Beep",
+          })(err);
+
+          browserSync.notify(
+            `Error: <span style='color:red'>${err.message}</span>`,
+            5000
+          );
+
+          this.emit("end");
+        },
+      })
+    )
+    .pipe(sourcemaps.init())
     .pipe(sass())
-    .on('error', sass.logError)
+    .pipe(sourcemaps.write('.'))
     .pipe(
       rename((path) => {
         path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
@@ -49,14 +72,16 @@ const scripts = () =>
     .pipe(browserSync.stream());
 
 const images = () =>
-  gulp
-    .src("./src/images/**/*.*")
-    .pipe(image())
-    .pipe(gulp.dest("./www/images"));
+  gulp.src("./src/images/**/*.*").pipe(image()).pipe(gulp.dest("./www/images"));
 
 gulp.task("default", () => {
   browserSync.init({
-    server: "./www",
+    server: {
+      baseDir: "./www",
+    },
+    open: true,
+    startPath: "",
+    tunnel: true,
   });
   styles();
   scripts();

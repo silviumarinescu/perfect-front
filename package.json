@@ -13,6 +13,9 @@
     "gulp-compile-handlebars": "^0.6.1",
     "gulp-sass": "^4.1.0",
     "gulp-image": "^6.2.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-notify": "^4.0.0",
+    "gulp-sourcemaps": "^3.0.0",
     "browser-sync": "^2.26.14",
     "bootstrap": "^5.0.0-beta3"
   },
