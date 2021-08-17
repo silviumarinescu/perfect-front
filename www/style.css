@@ -7496,6 +7496,23 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
+.container.home {
+  background-color: black;
+  color: white; }
+  .container.home .item {
+    position: relative;
+    width: 400px;
+    height: 400px; }
+    .container.home .item img {
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%; }
+
 i {
   font-size: 80px;
   color: cadetblue; }
