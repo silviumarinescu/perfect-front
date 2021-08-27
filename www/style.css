@@ -1,21 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-body {
-  font-family: "Lato", sans-serif; }
-
-header {
-  background: red; }
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%; }
-
 /*!
  * Bootstrap v5.0.0-beta3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -7495,6 +7484,37 @@ textarea.form-control-lg {
     display: inline-flex !important; }
   .d-print-none {
     display: none !important; } }
+
+body {
+  font-family: "Lato", sans-serif; }
+
+header {
+  background: red; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+
+.usr-review__wrap {
+  display: inline-block;
+  position: relative;
+  width: 200px; }
+
+.usr-review__range {
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+.star-empty {
+  fill: #757576; }
+
+.rect-filled {
+  fill: #F9ED23;
+  width: 50%; }
 
 .container.home {
   background-color: black;

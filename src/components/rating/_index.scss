@@ -1,0 +1,24 @@
+.usr-review {
+    &__wrap {
+      display: inline-block;
+      position: relative;
+      width: 200px;
+    }
+    &__range {
+      height: 100%;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+  
+  .star-empty {
+    fill: #757576;
+  }
+  
+  .rect-filled {
+    fill: #F9ED23;
+    width: 50%;
+  }
