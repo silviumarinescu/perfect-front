@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "gulp",
-    "build": "gulp build"
+    "build": "rm -r www & gulp build"
   },
   "devDependencies": {
     "handlebars": "^4.7.7",

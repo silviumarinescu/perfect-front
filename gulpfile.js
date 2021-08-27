@@ -4,7 +4,7 @@ const image = require("gulp-image");
 const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 const sass = require("gulp-sass");
-const sourcemaps = require('gulp-sourcemaps');
+const sourcemaps = require("gulp-sourcemaps");
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
 const fs = require("fs");
@@ -51,7 +51,7 @@ const styles = () =>
     )
     .pipe(sourcemaps.init())
     .pipe(sass())
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write("."))
     .pipe(
       rename((path) => {
         path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
@@ -81,7 +81,7 @@ gulp.task("default", () => {
     },
     open: true,
     startPath: "",
-    tunnel: true,
+    tunnel: false,
   });
   styles();
   scripts();
@@ -91,7 +91,7 @@ gulp.task("default", () => {
   gulp.watch("src/**/*.js", scripts);
   gulp.watch(["src/**/*.hbs", "src/data.json"], hbs);
   gulp.watch("src/images/**/*.*", images);
-  gulp.watch("www/*.html").on("change", browserSync.reload);
+  gulp.watch("www/**/**.**").on("change", browserSync.reload);
 });
 
 gulp.task("build", (done) => {
