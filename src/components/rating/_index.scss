@@ -2,7 +2,7 @@
     &__wrap {
       display: inline-block;
       position: relative;
-      width: 200px;
+      width: 1000px;
     }
     &__range {
       height: 100%;
@@ -15,10 +15,10 @@
   }
   
   .star-empty {
-    fill: #757576;
+    fill: $gray-600;
   }
   
   .rect-filled {
-    fill: #F9ED23;
+    fill: $yellow;
     width: 50%;
   }

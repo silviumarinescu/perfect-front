@@ -7499,7 +7499,7 @@ footer {
 .usr-review__wrap {
   display: inline-block;
   position: relative;
-  width: 200px; }
+  width: 1000px; }
 
 .usr-review__range {
   height: 100%;
@@ -7510,10 +7510,10 @@ footer {
   width: 100%; }
 
 .star-empty {
-  fill: #757576; }
+  fill: #6c757d; }
 
 .rect-filled {
-  fill: #F9ED23;
+  fill: #ffc107;
   width: 50%; }
 
 .container.home {
