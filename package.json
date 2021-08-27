@@ -2,10 +2,11 @@
   "name": "perfect-front",
   "version": "1.0.0",
   "scripts": {
-    "start": "gulp",
+    "start": "gulp & open-cli http://localhost:3000",
     "build": "rm -r www & gulp build"
   },
   "devDependencies": {
+    "open-cli":"^7.0.0",
     "handlebars": "^4.7.7",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
