@@ -1,0 +1,10 @@
+<div class="gallery">
+
+    {{> @partial-block }}
+
+    <div class="items d-none">
+        {{#each items}}
+        <div data-src="{{this.image}}" data-title="{{this.title}}" class="item"></div>
+        {{/each}}
+    </div>
+</div>
