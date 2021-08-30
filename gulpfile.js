@@ -104,7 +104,7 @@ gulp.task("default", () => {
     },
     open: true,
     startPath: "",
-    tunnel: false,
+    tunnel: true,
   });
   styles();
   scripts();
