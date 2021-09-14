@@ -47,7 +47,6 @@ window.onload = () => {
     });
     $(el).owlCarousel({
       loop: true,
-      margin: 10,
       center: true,
       nav: true,
       items: 1,
