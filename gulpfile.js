@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const handlebars = require("gulp-compile-handlebars");
 const image = require("gulp-image");
 const rename = require("gulp-rename");
+const open = require("open");
 const browserSync = require("browser-sync").create();
 const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
@@ -43,6 +44,7 @@ const hbs = () =>
                 return options.inverse(this);
             }
           },
+          loader: async function () {},
         },
       })
     )
@@ -115,6 +117,7 @@ gulp.task("default", () => {
   gulp.watch(["src/**/*.hbs", "src/data.json"], hbs);
   gulp.watch("src/images/**/*.*", images);
   gulp.watch("www/**/**.**").on("change", browserSync.reload);
+  open('http://localhost:3000');
 });
 
 gulp.task("build", (done) => {

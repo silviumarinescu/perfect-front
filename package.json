@@ -2,11 +2,10 @@
   "name": "perfect-front",
   "version": "1.0.0",
   "scripts": {
-    "start": "gulp & open-cli http://localhost:3000",
+    "start": "gulp",
     "build": "rm -r www & gulp build"
   },
   "devDependencies": {
-    "open-cli":"^7.0.0",
     "handlebars": "^4.7.7",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
@@ -18,6 +17,7 @@
     "gulp-notify": "^4.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "browser-sync": "^2.26.14",
+    "open": "^8.2.1",
     "bootstrap": "^5.0.0-beta3"
   },
   "license": "ISC"
