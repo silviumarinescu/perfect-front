@@ -1,6 +1,6 @@
 $primary: rgb(168, 99, 99);
 $secondary: yellow;
-$body-bg: pink;
+$body-bg: white;
 $body-color: purple;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
@@ -12,3 +12,4 @@ body {
 @import "../components/header/index";
 @import "../components/footer/index";
 @import "../components/rating/index";
+@import "../components/carousel/index";

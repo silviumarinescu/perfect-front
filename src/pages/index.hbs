@@ -12,8 +12,18 @@
             <div class="d-flex justify-content-end">
                 {{> rating/index score="50"}}
             </div>
-
         </div>
     </div>
+
+    <ul>
+        {{#loop 5}}
+        <li>
+            <div class="truncate">{{#lorem 500 500}}{{/lorem}}</div>
+        </li>
+        {{/loop}}
+    </ul>
+
+
+
 </div>
 {{/layout}}

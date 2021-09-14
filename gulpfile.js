@@ -1,5 +1,5 @@
 const gulp = require("gulp");
-const handlebars = require("gulp-compile-handlebars");
+const hb = require("gulp-hb");
 const image = require("gulp-image");
 const rename = require("gulp-rename");
 const open = require("open");
@@ -8,45 +8,15 @@ const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
-const fs = require("fs");
 
 const hbs = () =>
   gulp
     .src("src/pages/**/*.hbs")
     .pipe(
-      handlebars(JSON.parse(fs.readFileSync("src/data.json")), {
-        ignorePartials: true,
-        batch: ["./src/components"],
-        helpers: {
-          ifHelper: function (v1, operator, v2, options) {
-            switch (operator) {
-              case "==":
-                return v1 == v2 ? options.fn(this) : options.inverse(this);
-              case "===":
-                return v1 === v2 ? options.fn(this) : options.inverse(this);
-              case "!=":
-                return v1 != v2 ? options.fn(this) : options.inverse(this);
-              case "!==":
-                return v1 !== v2 ? options.fn(this) : options.inverse(this);
-              case "<":
-                return v1 < v2 ? options.fn(this) : options.inverse(this);
-              case "<=":
-                return v1 <= v2 ? options.fn(this) : options.inverse(this);
-              case ">":
-                return v1 > v2 ? options.fn(this) : options.inverse(this);
-              case ">=":
-                return v1 >= v2 ? options.fn(this) : options.inverse(this);
-              case "&&":
-                return v1 && v2 ? options.fn(this) : options.inverse(this);
-              case "||":
-                return v1 || v2 ? options.fn(this) : options.inverse(this);
-              default:
-                return options.inverse(this);
-            }
-          },
-          loader: async function () {},
-        },
-      })
+      hb()
+        .partials("./src/components/**/*.hbs")
+        .helpers("./src/helpers/*.js")
+        .data("./src/data/**/*.{js,json}")
     )
     .pipe(rename({ extname: ".html" }))
     .pipe(gulp.dest("www"))
@@ -87,37 +57,56 @@ const styles = () =>
 
 const scripts = () =>
   gulp
-    .src("src/**/*.js")
-    .pipe(
-      rename((path) => {
-        path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
-      })
-    )
-    .pipe(gulp.dest("www"))
+    .src("src/scripts/**/*.js")
+    // .pipe(
+    //   rename((path) => {
+    //     path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
+    //   })
+    // )
+    .pipe(gulp.dest("www/scripts"))
     .pipe(browserSync.stream());
 
 const images = () =>
   gulp.src("./src/images/**/*.*").pipe(image()).pipe(gulp.dest("./www/images"));
 
 gulp.task("default", () => {
+  const location = "web-dev-test-987";
   browserSync.init({
     server: {
       baseDir: "./www",
     },
-    open: true,
+    middleware: function (req, res, next) {
+      res.setHeader("Bypass-Tunnel-Reminder", "yes");
+      next();
+    },
+    open: false,
     startPath: "",
-    tunnel: "dev-test-123",
+    tunnel: location,
   });
   styles();
   scripts();
   hbs();
   images();
   gulp.watch("src/**/*.scss", styles);
-  gulp.watch("src/**/*.js", scripts);
-  gulp.watch(["src/**/*.hbs", "src/data.json"], hbs);
+  gulp.watch("src/scripts/**/*.js", scripts);
+  gulp.watch(
+    [
+      "src/**/*.hbs",
+      "src/data/**/*.json",
+      "src/data/**/*.js",
+      "src/helpers/**/*.js",
+    ],
+    hbs
+  );
   gulp.watch("src/images/**/*.*", images);
   gulp.watch("www/**/**.**").on("change", browserSync.reload);
-  open('http://localhost:3000');
+  if (location)
+    setTimeout(() => {
+      open(`https://${location}.loca.lt`);
+    }, 300);
+  else {
+    open(`http://localhost:3000`);
+  }
 });
 
 gulp.task("build", (done) => {

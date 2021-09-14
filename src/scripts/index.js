@@ -1,12 +1,13 @@
 window.onload = () => {
-  if ($(".bxslider").length)
-    $(".bxslider").bxSlider({
+  $(".bxslider").each((i, el) => {
+    $(el).bxSlider({
       auto: true,
       autoControls: true,
       stopAutoOnClick: true,
       pager: true,
       slideWidth: 600,
     });
+  })  
 
   window.galleies = [];
   $(".gallery").each((i, el) => {
@@ -28,5 +29,39 @@ window.onload = () => {
   });
   $(".gallery").on("click", function () {
     window.galleies[parseInt($(this).attr("data-gal"))].openGallery(0);
+  });
+
+  $(".truncate").each((i, el) => {
+    new Dotdotdot(el, {
+      height: 50,
+    });
+  });
+
+  $(".owl-carousel").each((i, el) => {
+    $(el).on("initialized.owl.carousel", function (event) {
+      $(".truncate").each((i, el) => {
+        new Dotdotdot(el, {
+          height: 50,
+        });
+      });
+    });
+    $(el).owlCarousel({
+      loop: true,
+      margin: 10,
+      center: true,
+      nav: true,
+      items: 1,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        1024: {
+          items: 3,
+        },
+        1600: {
+          items: 5,
+        },
+      },
+    });
   });
 };
