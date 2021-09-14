@@ -58,11 +58,6 @@ const styles = () =>
 const scripts = () =>
   gulp
     .src("src/scripts/**/*.js")
-    // .pipe(
-    //   rename((path) => {
-    //     path.dirname = path.dirname.replace("pages/", "").replace("pages", "");
-    //   })
-    // )
     .pipe(gulp.dest("www/scripts"))
     .pipe(browserSync.stream());
 
