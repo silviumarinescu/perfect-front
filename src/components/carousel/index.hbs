@@ -1,0 +1,20 @@
+<div class="owl-carousel owl-theme">
+    {{#loop count}}
+    <div class="d-flex justify-content-center">
+        <div class="card" style="width: 300px;">
+            {{#> gallery/index items=images}}
+            <div class="img-wrapper">
+                <img class="card-img-top" src="{{randomImg}}">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{#lorem 2 2}}{{/lorem}}</h5>
+                <p class="card-text truncate">{{#lorem 10 60}}{{/lorem}}</p>
+
+                <div class="btn btn-primary">Open gallery</div>
+
+            </div>
+            {{/gallery/index}}
+        </div>
+    </div>
+    {{/loop}}
+</div>
