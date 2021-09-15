@@ -2,14 +2,14 @@
 <div class="container second mt-5">
     <div class="row">
         <div class="col">
-            <div>the mesage is {{data.msg}}
+            <div>the mesage is {{msg}}
                 <i class="fas fa-space-shuttle text-secondary"></i>
                 <i class="fas fa-space-shuttle text-primaty"></i>
                 <i class="fas fa-space-shuttle text-warning"></i>
                 <i class="fas fa-space-shuttle text-success"></i>
             </div>
             <ul>
-                {{#each data.people}}
+                {{#each people}}
                 <li>{{this.name}}</li>
                 {{/each}}
             </ul>
@@ -17,26 +17,19 @@
     </div>
 </div>
 
+
 {{#> gallery/index items=carusel}}
-<div>click to see</div>
-{{#each carusel}}
-{{#ifHelper @index "<" 2}} <span class="item"><img width="100" src="{{this.image}}"></span>
-    {{/ifHelper}}
+    <div>click to see</div>
+    {{#each carusel}}
+        {{#ifHelper @index "<" 2}}
+         <span class="item"><img width="100" src="{{this.image}}"></span>
+        {{/ifHelper}}
     {{/each}}
-    {{/gallery/index}}
+{{/gallery/index}}
 
     <hr>
-
-    {{#> gallery/index items=carusel}}
+{{#> gallery/index items=carusel}}
     <div>click to see </div>
-    {{/gallery/index}}
+{{/gallery/index}}
 
-    <hr>
-
-    {{> carousel/index count=5}}
-
-    <hr>
-
-    {{> carousel/index count=15}}
-
-    {{/layout}}
+{{/layout}}

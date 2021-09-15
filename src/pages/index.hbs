@@ -1,6 +1,5 @@
 {{#> layout title="Homepage"}}
 <div class="container home mt-5">
-     <div>{{#lorem 100 500}}{{/lorem}}</div>
     <div class="row">
         <div class="col">
             <div class="bxslider">
@@ -11,20 +10,10 @@
         </div>
         <div class="col">
             <div class="d-flex justify-content-end">
-                {{> rating/index score="30"}}
+                {{> rating/index score="50"}}
             </div>
+
         </div>
     </div>
-
-    <ul>
-        {{#loop 5}}
-        <li>
-            <div class="truncate">{{#lorem 500 500}}{{/lorem}}</div>
-        </li>
-        {{/loop}}
-    </ul>
-
-   
-
 </div>
 {{/layout}}
