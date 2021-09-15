@@ -66,7 +66,7 @@ const images = () =>
 
 gulp.task("default", () => {
   let location = "web-dev-test-987";
-  location = false;
+  // location = false; // uncomment if tunnel is not working
   browserSync.init({
     server: {
       baseDir: "./www",
