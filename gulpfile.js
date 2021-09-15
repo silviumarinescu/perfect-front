@@ -65,7 +65,8 @@ const images = () =>
   gulp.src("./src/images/**/*.*").pipe(image()).pipe(gulp.dest("./www/images"));
 
 gulp.task("default", () => {
-  const location = "web-dev-test-987";
+  let location = "web-dev-test-987";
+  location = false;
   browserSync.init({
     server: {
       baseDir: "./www",
