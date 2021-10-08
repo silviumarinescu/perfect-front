@@ -3,8 +3,8 @@ const Gallery = (props) => {
     <div className="gallery">
       {props.children}
       <div className="items d-none">
-        {props.items.map((item) => (
-          <div data-src={item.image} data-title={item.title} className="item"></div>
+        {props.items.map((item, i) => (
+          <div key={i} data-src={item.image} data-title={item.title} className="item"></div>
         ))}
       </div>
     </div>
