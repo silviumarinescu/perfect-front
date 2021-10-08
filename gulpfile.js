@@ -1,5 +1,5 @@
 const gulp = require("gulp");
-const hb = require("gulp-hb");
+const through = require("through2");
 const image = require("gulp-image");
 const rename = require("gulp-rename");
 const open = require("open");
@@ -9,14 +9,20 @@ const sourcemaps = require("gulp-sourcemaps");
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
 
-const hbs = () =>
+const ReactParser = require("./reactParser");
+const reactParser = new ReactParser();
+
+const jsx = () =>
   gulp
-    .src("src/pages/**/*.hbs")
+    .src("src/pages/**/*.jsx")
     .pipe(
-      hb()
-        .partials("./src/components/**/*.hbs")
-        .helpers("./src/helpers/*.js")
-        .data("./src/data/**/*.{js,json}")
+      through.obj(async (file, enc, cb) => {
+        const app = await reactParser.getCode(file.path.split("/src")[1], true);
+        const ReactDOMServer = require("react-dom/server");
+        const dom = ReactDOMServer.renderToString(app());
+        file.contents = Buffer.from(`<!DOCTYPE html>${dom}`);
+        cb(null, file);
+      })
     )
     .pipe(rename({ extname: ".html" }))
     .pipe(gulp.dest("www"))
@@ -81,19 +87,11 @@ gulp.task("default", () => {
   });
   styles();
   scripts();
-  hbs();
+  jsx();
   images();
   gulp.watch("src/**/*.scss", styles);
   gulp.watch("src/scripts/**/*.js", scripts);
-  gulp.watch(
-    [
-      "src/**/*.hbs",
-      "src/data/**/*.json",
-      "src/data/**/*.js",
-      "src/helpers/**/*.js",
-    ],
-    hbs
-  );
+  gulp.watch(["src/**/*.jsx"], jsx);
   gulp.watch("src/images/**/*.*", images);
   gulp.watch("www/**/**.**").on("change", browserSync.reload);
   if (location)
@@ -108,7 +106,7 @@ gulp.task("default", () => {
 gulp.task("build", (done) => {
   styles();
   scripts();
-  hbs();
+  jsx();
   images();
   done();
 });

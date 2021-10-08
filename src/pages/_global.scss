@@ -1,6 +1,6 @@
-$primary: purple;
+$primary: rgb(168, 99, 99);
 $secondary: yellow;
-$body-bg: white;
+$body-bg: pink;
 $body-color: purple;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
@@ -9,7 +9,6 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-@import "../components/header/index";
-@import "../components/footer/index";
-@import "../components/rating/index";
-@import "../components/carousel/index";
+@import "../components/Header/index";
+@import "../components/Footer/index";
+@import "../components/Rating/index";
