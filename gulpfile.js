@@ -91,7 +91,7 @@ gulp.task("default", () => {
   images();
   gulp.watch("src/**/*.scss", styles);
   gulp.watch("src/scripts/**/*.js", scripts);
-  gulp.watch(["src/**/*.jsx"], jsx);
+  gulp.watch(["src/**/*.jsx", "src/data/**/*.js"], jsx);
   gulp.watch("src/images/**/*.*", images);
   gulp.watch("www/**/**.**").on("change", browserSync.reload);
   if (location)
