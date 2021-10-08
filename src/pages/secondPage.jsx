@@ -17,8 +17,8 @@ const SecondLevel = () => {
               <i className="fas fa-space-shuttle text-success"></i>
             </div>
             <ul>
-              {data.people.map((person) => (
-                <li>{person.name}</li>
+              {data.people.map((person, i) => (
+                <li key={i}>{person.name}</li>
               ))}
             </ul>
           </div>
